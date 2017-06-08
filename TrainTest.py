@@ -1,7 +1,7 @@
 import numpy as np
 import math
 
-from DecisionTreeWeight import crossValidate
+from DecisionTreePointwiseGini import crossValidate
 from DecisionTreeMallows import crossValidate
 from logRegression import crossValidate
 from RankPairPref import crossValidate

@@ -7,15 +7,18 @@ import math
 import numpy as np
 from sklearn.model_selection import KFold
 
-import DecisionTree as DTme
-from DecisionTree import orderList
-from DecisionTree import alphaList
+import DT as DTme
+from DT import orderList
+from DT import alphaList
 from PerfMeasure import perfMeasure
 import ReadData
 
 """
 rankform = [[highest_possible_rank, lowest_possible_rank] for emoticon in emoticon_list]
 """
+
+######################### Mallows model fit ##################################
+# also used in KNNMallows #
 
 def MM(ranks, max_iter = 10, iter_out = False, theta_calculate = True):
     """
@@ -195,6 +198,9 @@ def score2rank(rscore, cplt=False):
                     break
     return rank
 
+######################################################################################
+
+############################## Decision Tree #########################################
 
 def bestSplit(x, y, samples, feature, min_node=1):
     """

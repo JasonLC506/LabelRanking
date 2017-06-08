@@ -3,10 +3,11 @@ from KNNMallows import KNNMallows as KNN # using Mallows model
 import threading
 import time
 import numpy as np
-import logRegFeatureEmotion as LogR
+import logRegression as LogR
+from PerfMeasure import perfMeasure
+import ReadData
 from sklearn.model_selection import KFold
 import math
-from readSushiData import readSushiData
 from datetime import datetime
 
 THREADS = 20
@@ -44,7 +45,7 @@ def crossValidate(x, y, cv=5, K=None):
         print y_pred
 
         # print y_pred ### test
-        results["perf"].append(LogR.perfMeasure(y_pred, y_test, rankopt=True))
+        results["perf"].append(perfMeasure(y_pred, y_test, rankopt=True))
         # print results["perf"][-1]
 
     for key in results.keys():
@@ -84,8 +85,8 @@ if __name__ == "__main__":
     Ks = [10, 40, 80]
     for K in Ks:
         print K, "start at ", datetime.now()
-        x,y = LogR.dataClean(datafile)
-        y = np.array(map(LogR.rankOrder, y.tolist()))
+        x,y = ReadData.dataFacebook(datafile)
+        y = np.array(map(ReadData.rankOrder, y.tolist()))
         # x, y = readSushiData()
         # x,y = x[:1000, :], y[:1000, :]
 
